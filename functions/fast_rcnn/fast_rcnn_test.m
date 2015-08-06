@@ -12,13 +12,9 @@ function mAP = fast_rcnn_test(conf, imdb, roidb, varargin)
     ip.addRequired('conf',                              @isstruct);
     ip.addRequired('imdb',                              @isstruct);
     ip.addRequired('roidb',                             @isstruct);
-    ip.addParamValue('net_def_file',    fullfile(pwd, 'models', 'Zeiler_conv5', 'test.prototxt'), ...
-                                                        @isstr);
-    ip.addParamValue('net_file',        fullfile(pwd, 'models', 'Zeiler_conv5', 'Zeiler_conv5'), ...
-                                                        @isstr);
-    ip.addParamValue('cache_name',      'Zeiler_conv5', ...
-                                                        @isstr);
-                                                    
+    ip.addParamValue('net_def_file',    '', 			@isstr);
+    ip.addParamValue('net_file',        '', 			@isstr);
+    ip.addParamValue('cache_name',      '', 			@isstr);                                         
     ip.addParamValue('suffix',          '',             @isstr);
     ip.addParamValue('ignore_cache',    false,          @islogical);
     
@@ -26,10 +22,11 @@ function mAP = fast_rcnn_test(conf, imdb, roidb, varargin)
     opts = ip.Results;
     
 
-%%  init log
+%%  set cache dir
     cache_dir = fullfile(pwd, 'output', 'fast_rcnn_cachedir', opts.cache_name, imdb.name);
     mkdir_if_missing(cache_dir);
 
+%%  init log
     timestamp = datestr(datevec(now()), 'yyyymmdd_HHMMSS');
     mkdir_if_missing(fullfile(cache_dir, 'log'));
     log_file = fullfile(cache_dir, 'log', ['test_', timestamp, '.txt']);
@@ -189,6 +186,7 @@ function mAP = fast_rcnn_test(conf, imdb, roidb, varargin)
     else
         mAP = nan;
     end
+    
     diary off;
 end
 
@@ -212,7 +210,7 @@ function max_rois_num = check_gpu_memory(conf, caffe_net)
 
         max_rois_num = rois_num;
             
-        if gpuInfo.FreeMemory < 2 * 10^9  % 2GB for safety reason
+        if gpuInfo.FreeMemory < 2 * 10^9  % 2GB for safety
             break;
         end
     end
@@ -231,9 +229,11 @@ function [boxes, box_inds, thresh] = keep_top_k(boxes, box_inds, end_at, top_k, 
     scores = sort(X(:,end), 'descend');
     thresh = scores(min(length(scores), top_k));
     for image_index = 1:end_at
-        bbox = boxes{image_index};
-        keep = find(bbox(:,end) >= thresh);
-        boxes{image_index} = bbox(keep,:);
-        box_inds{image_index} = box_inds{image_index}(keep);
+        if ~isempty(boxes{image_index})
+            bbox = boxes{image_index};
+            keep = find(bbox(:,end) >= thresh);
+            boxes{image_index} = bbox(keep,:);
+            box_inds{image_index} = box_inds{image_index}(keep);
+        end
     end
 end

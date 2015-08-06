@@ -8,8 +8,7 @@ function [image_roidb, bbox_means, bbox_stds] = fast_rcnn_prepare_image_roidb(co
 % Reimplementation based on Python Fast R-CNN (https://github.com/rbgirshick/fast-rcnn)
 % Copyright (c) 2015, Shaoqing Ren
 % Licensed under The MIT License [see LICENSE for details]
-% --------------------------------------------------------
-%% 
+% -------------------------------------------------------- 
     
     if ~exist('bbox_means', 'var')
         bbox_means = [];

@@ -72,8 +72,6 @@ model.stage2_fast_rcnn      = Faster_RCNN_Train.do_fast_rcnn_train(conf_fast_rcn
 
 %% final test
 fprintf('\n***************\nfinal test\n***************\n');
-assert(check_proposal_fast_rcnn_model(opts.test_net_proposal, opts.proposal_model, ...
-         opts.test_net_fast_rcnn, opts.fast_rcnn_model));
      
 opts.final_mAP              = Faster_RCNN_Train.do_fast_rcnn_test(conf_fast_rcnn, model.stage2_fast_rcnn, dataset.imdb_test, dataset.roidb_test);
 

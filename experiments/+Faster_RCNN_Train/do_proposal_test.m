@@ -4,7 +4,7 @@ function roidb_new = do_proposal_test(conf, model_stage, imdb, roidb)
                                         'net_file',         model_stage.output_model_file, ...
                                         'cache_name',       model_stage.cache_name);      
                                     
-    aboxes                      = boxes_filter(aboxes, model_stage.per_nms_topN, model_stage.nms_overlap_thres, model_stage.after_nms_topN, conf.use_gpu);    
+    aboxes                      = boxes_filter(aboxes, model_stage.nms.per_nms_topN, model_stage.nms.nms_overlap_thres, model_stage.nms.after_nms_topN, conf.use_gpu);    
     
     roidb_regions               = make_roidb_regions(aboxes, imdb.image_ids);  
     

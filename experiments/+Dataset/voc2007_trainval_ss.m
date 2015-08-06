@@ -1,10 +1,10 @@
 function dataset = voc2007_trainval_ss(dataset, usage, use_flip)
-% Pascal voc 2007 test set with selective search
+% Pascal voc 2007 trainval set with selective search
 % set opts.imdb_train opts.roidb_train 
 % or set opts.imdb_test opts.roidb_train
 
 % change to point to your devkit install
-devkit             = './datasets/VOCdevkit2007';
+devkit                      = voc2007_devkit();
 
 switch usage
     case {'train'}
