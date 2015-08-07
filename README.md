@@ -30,7 +30,11 @@ If you find Faster R-CNN useful in your research, please consider citing:
     
 ### Requirements: hardware
 
-1. GPU memory 
+GPU memory 
+- Region Proposal Networks (RPN)
+   - ~2GB GPU memory for Zeiler & Fergus (ZF) network 
+   - ~5GB GPU memory for VGG 16-layers network 
+- Detection Network (Fast R-CNN)
    - ~3GB GPU memory for Zeiler & Fergus (ZF) network 
    - ~8GB GPU memory for VGG 16-layers network 
 
