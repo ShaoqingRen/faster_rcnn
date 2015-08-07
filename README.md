@@ -25,16 +25,18 @@ If you find Faster R-CNN useful in your research, please consider citing:
 
 ### Requirements: software
 
-1. Requirements for matlab interface of [Caffe](http://caffe.berkeleyvision.org/installation.html)). Please use the modified     [Caffe for Faster R-CNN](https://github.com/ShaoqingRen/caffe/tree/faster-R-CNN).
+1. Requirements for matlab interface of [Caffe](http://caffe.berkeleyvision.org/installation.html). Please use the modified     [Caffe for Faster R-CNN](https://github.com/ShaoqingRen/caffe/tree/faster-R-CNN).
 2. MATLAB 
     
 ### Requirements: hardware
 
-1. In training, you'll need ~3GB GPU memory for Zeiler & Fergus (ZF) network and ~8GB GPU memory for VGG 16-layers network 
+1. GPU memory 
+   - ~3GB GPU memory for Zeiler & Fergus (ZF) network 
+   - ~8GB GPU memory for VGG 16-layers network 
 
 ### Downloads
 1. Prototxts and related pre-trained network on ImageNet classification task
-    Zeiler & Fergus (ZF) network [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17219&authkey=!AKo99U4eBWjKbcY&ithint=file%2crar) [DropBox](https://www.dropbox.com/s/tqvqcwl7suge985/model_ZF.rar?dl=0) [BaiduYun](http://pan.baidu.com/s/1o668ygU)
-    VGG 16-layers network [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17221&authkey=!ACNHeBfDAqzt0Uk&ithint=file%2crar) [DropBox](https://www.dropbox.com/s/8q1ugxhy71zqzhf/models_VGG16.rar?dl=0) [BaiduYun](http://pan.baidu.com/s/1hqkzZFm)
+    - Zeiler & Fergus (ZF) network [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17219&authkey=!AKo99U4eBWjKbcY&ithint=file%2crar), [DropBox](https://www.dropbox.com/s/tqvqcwl7suge985/model_ZF.rar?dl=0), [BaiduYun](http://pan.baidu.com/s/1o668ygU)
+    - VGG 16-layers network [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17221&authkey=!ACNHeBfDAqzt0Uk&ithint=file%2crar), [DropBox](https://www.dropbox.com/s/8q1ugxhy71zqzhf/models_VGG16.rar?dl=0), [BaiduYun](http://pan.baidu.com/s/1hqkzZFm)
 2. Pre-complied caffe mex
-    Windows complied with VS2013 and Cuda6.5 [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17218&authkey=!AOqDbPj7Idd4O4w&ithint=file%2czip) [DropBox](https://www.dropbox.com/s/mqw7b7qqx0dojkb/caffe_library.zip?dl=0) [BaiduYun](http://pan.baidu.com/s/1mgxjcCC)
+    - Windows based complied with VS2013 and Cuda6.5 [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17218&authkey=!AOqDbPj7Idd4O4w&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/mqw7b7qqx0dojkb/caffe_library.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1mgxjcCC)
