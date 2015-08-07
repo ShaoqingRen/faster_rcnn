@@ -11,34 +11,24 @@ function startup()
     addpath(genpath(fullfile(curdir, 'functions')));
     addpath(genpath(fullfile(curdir, 'bin')));
     addpath(genpath(fullfile(curdir, 'experiments')));
-
-    data_folder = fullfile(fileparts(pwd), 'faster_rcnn_data');
-    link_data(data_folder, 'data');
-    link_data(data_folder, 'datasets');
-    link_data(data_folder, 'external', true);
-    addpath(genpath(fullfile(pwd, 'imdb')));
-    link_data(data_folder, fullfile('imdb', 'cache'));
-
-    data_folder = fullfile(fileparts(pwd), 'faster_rcnn_data');
-    link_data(data_folder, 'output');
-    link_data(data_folder, 'models');
-    fprintf('fast_rcnn startup done\n');
     
-end
+    mkdir_if_missing(fullfile(curdir, 'data'));
+    addpath(genpath(fullfile(curdir, 'data')));
+    
+    mkdir_if_missing(fullfile(curdir, 'datasets'));
+    addpath(genpath(fullfile(curdir, 'datasets')));
+    
+    mkdir_if_missing(fullfile(curdir, 'external'));
+    addpath(genpath(fullfile(curdir, 'external')));
+    
+    mkdir_if_missing(fullfile(curdir, 'imdb', 'cache'));
+    addpath(genpath(fullfile(curdir, 'imdb', 'cache')));
+    
+    mkdir_if_missing(fullfile(curdir, 'output'));
+    addpath(genpath(fullfile(curdir, 'output')));
+    
+    mkdir_if_missing(fullfile(curdir, 'models'));
+    addpath(genpath(fullfile(curdir, 'models')));
 
-function link_data(data_folder, sub_dir, isaddpath)    
-    if ~exist('isaddpath', 'var')
-        isaddpath = false;
-    end
-
-    if ~exist(fullfile(data_folder, sub_dir), 'dir')
-       fprintf('miss target folder %s\n', fullfile(data_folder, sub_dir));
-       return;
-    end
-    if ~exist(fullfile(pwd, sub_dir), 'dir')
-        symbolic_link(fullfile(pwd, sub_dir), fullfile(data_folder, sub_dir));
-    end
-    if isaddpath
-        addpath(genpath(fullfile(pwd, sub_dir)));
-    end
+    fprintf('fast_rcnn startup done\n');
 end
