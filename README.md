@@ -6,9 +6,9 @@ By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun at Microsoft Research
 
 **Faster R-CNN** is a framework for object detection with deep ConvNets including windows proposal network (RPN) and detection network. These two networks are trained for sharing convolution layers to speed up testing speed. 
 
-This repo contains a matlab version re-implementation of Fast R-CNN. Details and related paper about Fast R-CNN (see: [rbgirshick/fast-rcnn](https://github.com/rbgirshick/fast-rcnn)).
-
 Faster R-CNN was initially described in an [arXiv tech report](http://arxiv.org/abs/1506.01497).
+
+Note: This repo contains a matlab version re-implementation of Fast R-CNN. Details and related paper about Fast R-CNN (see: [rbgirshick/fast-rcnn](https://github.com/rbgirshick/fast-rcnn)).
 
 ### License
 
