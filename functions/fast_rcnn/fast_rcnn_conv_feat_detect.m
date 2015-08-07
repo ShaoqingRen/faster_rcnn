@@ -77,6 +77,11 @@ function [rois_blob, im_scale_factors] = get_blobs(conf, im, rois)
     rois_blob = get_rois_blob(conf, rois, im_scale_factors);
 end
 
+function im_scales = get_image_blob_scales(conf, im)
+    im_scales = arrayfun(@(x) prep_im_for_blob_size(size(im), x, conf.test_max_size), conf.test_scales, 'UniformOutput', false);
+    im_scales = cell2mat(im_scales); 
+end
+
 function [rois_blob] = get_rois_blob(conf, im_rois, im_scale_factors)
     [feat_rois, levels] = map_im_rois_to_feat_rois(conf, im_rois, im_scale_factors);
     rois_blob = single([levels, feat_rois]);

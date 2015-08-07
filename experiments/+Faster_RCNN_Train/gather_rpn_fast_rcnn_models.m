@@ -1,5 +1,5 @@
 function gather_rpn_fast_rcnn_models(conf_proposal, conf_fast_rcnn, model, dataset)
-    cachedir = fullfile(pwd, 'output', 'rpn_fast_rcnn', model.final_model.cache_name);
+    cachedir = fullfile(pwd, 'output', 'faster_rcnn_final', model.final_model.cache_name);
     mkdir_if_missing(cachedir);
     
     % find latest model for rpn and fast rcnn
@@ -7,7 +7,7 @@ function gather_rpn_fast_rcnn_models(conf_proposal, conf_fast_rcnn, model, datas
     [fast_rcnn_test_net_def_file, fast_rcnn_output_model_file] = find_last_output_model_file(model.stage1_fast_rcnn, model.stage2_fast_rcnn);
     
     % check whether feature shared and find the indexs of shared layers
-    [is_share_feature, ~, fast_rcnn_weights, shared_layer_idx] = ...
+    [is_share_feature, last_shared_output_blob_name, shared_layer_names, shared_layer_idx] = ...
         check_proposal_fast_rcnn_model(rpn_test_net_def_file, rpn_output_model_file, ...
          fast_rcnn_test_net_def_file, fast_rcnn_output_model_file);
      
@@ -35,7 +35,9 @@ function gather_rpn_fast_rcnn_models(conf_proposal, conf_fast_rcnn, model, datas
     if is_share_feature
         proposal_detection_model.last_shared_layer_idx = max(shared_layer_idx);
         proposal_detection_model.last_shared_layer_detection = ...
-            fast_rcnn_weights(proposal_detection_model.last_shared_layer_idx).layer_names;
+            shared_layer_names{proposal_detection_model.last_shared_layer_idx};
+        proposal_detection_model.last_shared_output_blob_name = ...
+            last_shared_output_blob_name;
         fprintf('please modify %s file for sharing conv layers with proposal model (delete layers until %s)\n', ...
             proposal_detection_model.detection_net_def, proposal_detection_model.last_shared_layer_detection);
     end
@@ -43,30 +45,50 @@ function gather_rpn_fast_rcnn_models(conf_proposal, conf_fast_rcnn, model, datas
     save(fullfile(cachedir, 'model'), 'proposal_detection_model');
 end
 
-function [is_share_feature, proposal_weights, fast_rcnn_weights, shared_layer_idx] = check_proposal_fast_rcnn_model(proposal_model_net, proposal_model_bin, ...
+function [is_share_feature, last_shared_output_blob_name, shared_layer_names, shared_layer_idx] = check_proposal_fast_rcnn_model(proposal_model_net, proposal_model_bin, ...
         fast_rcnn_model_net, fast_rcnn_model_bin)
 
-    init_net(fast_rcnn_model_net, fast_rcnn_model_bin, '//log//', 0);
-    init_net(proposal_model_net, proposal_model_bin, '//log//', 1);
-    fast_rcnn_weights = caffe('get_weights', 0);
-    proposal_weights = caffe('get_weights', 1);
+    rpn_net = caffe.Net(proposal_model_net, 'test');
+    rpn_net.copy_from(proposal_model_bin);
     
-    is_share_feature = true;
+    fast_rcnn_net = caffe.Net(fast_rcnn_model_net, 'test');
+    fast_rcnn_net.copy_from(fast_rcnn_model_bin);
+    
+    share_layer = true;
     shared_layer_idx = [];
-    for i = 1:min(length(fast_rcnn_weights), length(proposal_weights))
-       if ~strcmp(fast_rcnn_weights(i).layer_names, proposal_weights(i).layer_names)
+    shared_layer_names = {};
+    shared_rpn_blobs = {};
+    for i = 1:min(length(rpn_net.layer_names), length(fast_rcnn_net.layer_names))
+       if ~strcmp(rpn_net.layer_names{i}, fast_rcnn_net.layer_names{i})
            break;
        end
        
-       if ~isequal(fast_rcnn_weights(i).weights, proposal_weights(i).weights)
-           is_share_feature = false;
+       rpn_layer_name = rpn_net.layer_names{i};
+       fast_rcnn_layer_name = fast_rcnn_net.layer_names{i};
+       rpn_layer = rpn_net.layers(rpn_layer_name);
+       fast_rcnn_layer = fast_rcnn_net.layers(fast_rcnn_layer_name);
+       
+       for j = 1:min(length(rpn_layer.params), length(fast_rcnn_layer.params))
+           if ~isequal(rpn_net.params(rpn_layer_name, j).get_data(), fast_rcnn_net.params(fast_rcnn_layer_name, j).get_data())
+               share_layer = false;
+           end 
+       end
+       
+       if ~share_layer 
+           break;
        else
            shared_layer_idx(end+1) = i;
+           shared_layer_names{end+1} = rpn_layer_name; 
+           last_shared_output_blob_name = rpn_net.blob_names{rpn_net.top_id_vecs{i}};
        end
     end
     
-    caffe('release', 0);
-    caffe('release', 1);
+    is_share_feature = false;
+    if ~isempty(shared_layer_idx)
+        is_share_feature = true;
+    end
+    
+    caffe.reset_all(); 
 end
 
 function [test_net_def_file, output_model_file] = find_last_output_model_file(stage1, stage2)

@@ -17,12 +17,13 @@ opts.use_gpu                = true;
 opts.test_scales            = 600;
 
 %% -------------------- INIT_MODEL --------------------
-model_dir                   = fullfile(pwd, 'proposal_detection', 'Zeiler_conv5_c3_fcn_9a_0712_60k80k_release');
+model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_vgg_16layers');
 proposal_detection_model    = load_proposal_detection_model(model_dir);
 
 proposal_detection_model.conf_proposal.test_scales = opts.test_scales;
 proposal_detection_model.conf_detection.test_scales = opts.test_scales;
 
+caffe.init_log(fullfile(pwd, 'caffe_log'));
 % proposal net
 rpn_net = caffe.Net(proposal_detection_model.proposal_net_def, 'test');
 rpn_net.copy_from(proposal_detection_model.proposal_net);
@@ -31,15 +32,14 @@ fast_rcnn_net = caffe.Net(proposal_detection_model.detection_net_def, 'test');
 fast_rcnn_net.copy_from(proposal_detection_model.detection_net);
 
 % set gpu/cpu
-if conf.use_gpu
+if opts.use_gpu
     caffe.set_mode_gpu();
 else
     caffe.set_mode_cpu();
 end       
 
 %% -------------------- TESTING --------------------
-% im = imread(fullfile(pwd, 'datasets', 'VOCdevkit2007', 'VOC2007', 'JPEGImages', '000010.jpg'));
-im = imread('E:\code\spp\spp_data\datasets\COCO\COCO2014\JPEGImages\COCO_train2014_000000000529.jpg');
+im = imread(fullfile(pwd, 'datasets', 'VOCdevkit2007', 'VOC2007', 'JPEGImages', '000010.jpg'));
 
 for j = 1:10
      % test proposal
@@ -53,12 +53,12 @@ for j = 1:10
     % test detection
     th = tic();
     if proposal_detection_model.is_share_feature
-        [boxes, scores]             = fast_rcnn_conv_feat_detect(proposal_detection_model.conf_detection, im, ...
-                                        rpn_net.blobs(proposal_detection_model.last_shared_layer_detection).get_data(), ...
+        [boxes, scores]             = fast_rcnn_conv_feat_detect(proposal_detection_model.conf_detection, fast_rcnn_net, im, ...
+                                        rpn_net.blobs(proposal_detection_model.last_shared_output_blob_name).get_data(), ...
                                         aboxes(:, 1:4), opts.after_nms_topN);
     else                   
-        [boxes, scores]             = fast_rcnn_im_detect(proposal_detection_model.conf_detection, im, ...
-                                        aboxes(:, 1:4), max_rois_num_in_gpu);
+        [boxes, scores]             = fast_rcnn_im_detect(proposal_detection_model.conf_detection, fast_rcnn_net, im, ...
+                                        aboxes(:, 1:4), opts.after_nms_topN);
     end
     t_detection = toc(th);
 

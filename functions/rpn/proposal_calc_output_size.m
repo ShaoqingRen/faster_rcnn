@@ -6,6 +6,7 @@ function [output_width_map, output_height_map] = proposal_calc_output_size(conf,
 % Licensed under The MIT License [see LICENSE for details]
 % --------------------------------------------------------
 
+%     caffe.init_log(fullfile(pwd, 'caffe_log'));
     caffe_net = caffe.Net(test_net_def_file, 'test');
     
      % set gpu/cpu
