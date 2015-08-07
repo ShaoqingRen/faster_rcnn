@@ -25,7 +25,10 @@ If you find Faster R-CNN useful in your research, please consider citing:
 
 ### Requirements: software
 
-1. Requirements for matlab interface of `Caffe` (see: [Caffe installation instructions](http://caffe.berkeleyvision.org/installation.html)). Please use the modified [Caffe for Faster R-CNN](https://github.com/ShaoqingRen/caffe/tree/faster-R-CNN).
+1. Requirements for matlab interface of `Caffe` (see: [Caffe installation instructions](http://caffe.berkeleyvision.org/installation.html)). 
+    
+Please use the modified [Caffe for Faster R-CNN](https://github.com/ShaoqingRen/caffe/tree/faster-R-CNN).
+
 2. MATLAB 
     
 ### Requirements: hardware
