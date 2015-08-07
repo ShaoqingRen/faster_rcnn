@@ -1,5 +1,5 @@
-function script_faster_rcnn_VOC2012_VGG16()
-% script_faster_rcnn_VOC2012_VGG16()
+function script_faster_rcnn_VOC0712plus_VGG16()
+% script_faster_rcnn_VOC0712plus_VGG16()
 % Faster rcnn training and testing with VGG16 model
 % --------------------------------------------------------
 % Faster R-CNN
@@ -19,14 +19,14 @@ active_caffe_mex(opts.gpu_id, opts.caffe_version);
 % do validation, or not 
 opts.do_val                 = false; 
 % model
-model                       = Model.VGG16_for_Faster_RCNN_VOC2012;
+model                       = Model.VGG16_for_Faster_RCNN_VOC0712plus;
 % cache base
-cache_base_proposal         = 'faster_rcnn_VOC2012_vgg_16layers';
+cache_base_proposal         = 'faster_rcnn_VOC0712plus_vgg_16layers';
 cache_base_fast_rcnn        = '';
 % train/test data
 dataset                     = [];
 use_flipped                 = true;
-dataset                     = Dataset.voc2012_trainval(dataset, 'train', use_flipped);
+dataset                     = Dataset.voc0712plus_trainval(dataset, 'train', use_flipped);
 dataset                     = Dataset.voc2012_test(dataset, 'test', false);
 
 %% -------------------- TRAIN --------------------
