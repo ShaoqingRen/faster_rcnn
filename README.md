@@ -46,3 +46,5 @@ GPU memory
     - VGG 16-layers network [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17257&authkey=!AO38BiePXqYrz5M&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/z5rrji25uskha73/model_VGG16.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1pJ9opyr)
 2. Pre-complied caffe mex
     - Windows based complied with VS2013 and Cuda6.5 [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17255&authkey=!AHOIeRzQKCYXD3U&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/m6sg347tiaqpcwy/caffe_mex.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1nZYOI)
+3. Experiment logs [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17290&authkey=!AGhH4z667tHYYEw&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1nt48EJB)
+4. Final output models [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17291&authkey=!AEH1ks0uYgn-iNY&ithint=file%2crar), [DropBox](https://www.dropbox.com/s/44yn67l5f43og85/faster_rcnn_final_model.rar?dl=0), [BaiduYun](http://pan.baidu.com/s/1bnnshHl)
