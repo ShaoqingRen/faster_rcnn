@@ -17,13 +17,13 @@ opts.use_gpu                = true;
 opts.test_scales            = 600;
 
 %% -------------------- INIT_MODEL --------------------
-model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_vgg_16layers');
+model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC2007_vgg_16layers');
 proposal_detection_model    = load_proposal_detection_model(model_dir);
 
 proposal_detection_model.conf_proposal.test_scales = opts.test_scales;
 proposal_detection_model.conf_detection.test_scales = opts.test_scales;
 
-caffe.init_log(fullfile(pwd, 'caffe_log'));
+% caffe.init_log(fullfile(pwd, 'caffe_log'));
 % proposal net
 rpn_net = caffe.Net(proposal_detection_model.proposal_net_def, 'test');
 rpn_net.copy_from(proposal_detection_model.proposal_net);
@@ -39,7 +39,7 @@ else
 end       
 
 %% -------------------- TESTING --------------------
-im = imread(fullfile(pwd, 'datasets', 'VOCdevkit2007', 'VOC2007', 'JPEGImages', '000010.jpg'));
+im = imread(fullfile(pwd, '004545.jpg'));
 
 for j = 1:10
      % test proposal
