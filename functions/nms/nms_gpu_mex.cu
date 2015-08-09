@@ -69,7 +69,7 @@ __global__ void nms_kernel(const int n_boxes, const float nms_overlap_thres, con
 * Host code
 */
 void mexFunction(int nlhs, mxArray *plhs[],
-	int nrhs, mxArray const *prhs[])
+	int nrhs, const mxArray *prhs[])
 {
 	
 	/* Declare all variables.*/
