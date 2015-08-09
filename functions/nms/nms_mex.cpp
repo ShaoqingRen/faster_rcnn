@@ -1,6 +1,8 @@
 #include "mex.h"
+#ifdef _MSC_VER
 #include <windows.h>
 #include <tchar.h>
+#endif
 #include <vector>
 #include <map>
 using namespace std;
@@ -40,7 +42,7 @@ void nms(const mxArray *input_boxes, double overlap, vector<int> &vPick, int &nP
 		vPick[nPick] = last;
 		nPick += 1;
 
-		for (std::multimap<T, int>::iterator it = scores.begin(); it != scores.end();)
+		for (typename std::multimap<T, int>::iterator it = scores.begin(); it != scores.end();)
 		{
 			int it_idx = it->second;
 			T xx1 = max(pBoxes[0*nSample + last], pBoxes[0*nSample + it_idx]);
@@ -48,7 +50,7 @@ void nms(const mxArray *input_boxes, double overlap, vector<int> &vPick, int &nP
 			T xx2 = min(pBoxes[2*nSample + last], pBoxes[2*nSample + it_idx]);
 			T yy2 = min(pBoxes[3*nSample + last], pBoxes[3*nSample + it_idx]);
 
-			double w = max(0.0, xx2-xx1+1), h = max(0.0, yy2-yy1+1);
+			double w = max(T(0.0), xx2-xx1+1), h = max(T(0.0), yy2-yy1+1);
 
 			double ov = w*h / (vArea[last] + vArea[it_idx] - w*h);
 
@@ -66,7 +68,7 @@ void nms(const mxArray *input_boxes, double overlap, vector<int> &vPick, int &nP
 }
 
 
-void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
+void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
 	if (nrhs != 2)
 		mexErrMsgTxt("Wrong number of inputs"); 

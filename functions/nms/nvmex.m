@@ -16,22 +16,20 @@ if ispc % Windows
         machine_str = ' --machine 64 ';
         CUDA_LIB_Location = ['"' getenv('CUDA_PATH')  '\lib\x64"'];
     end
+    NVCC = 'nvcc';
 else % Mac and Linux (assuming gcc is on the path)
     CUDA_INC_Location = '/usr/local/cuda/include';
     CUDA_SAMPLES_Location = '/usr/local/cuda/samples/common/inc';
- Host_Compiler_Location = ' ';
- PIC_Option = ' --compiler-options -fPIC ';
+    Host_Compiler_Location = ' ';
+    PIC_Option = ' --compiler-options -fPIC ';
     machine_str = [];
-    if ( strcmp(computer('arch'),'win32') ==1)
-        CUDA_LIB_Location = '/usr/local/cuda/lib';
-    elseif  ( strcmp(computer('arch'),'win64') ==1)
-        CUDA_LIB_Location = '/usr/local/cuda/lib64';
-    end
+    CUDA_LIB_Location = '/usr/local/cuda/lib64';
+    NVCC = '/usr/local/cuda/bin/nvcc';
 end
 % !!! End of things to modify !!!
 [~, filename] = fileparts(cuFileName);
 nvccCommandLine = [ ...
-'nvcc --compile ' Host_Compiler_Location ' ' ...
+NVCC ' --compile ' Host_Compiler_Location ' ' ...
 '-o '  filename '.o ' ...
 machine_str PIC_Option ...
 ' -I' '"' matlabroot '/extern/include "' ...
