@@ -11,7 +11,7 @@ switch usage
         dataset.imdb_train    = {  imdb_from_voc(devkit, 'trainval', '2012', use_flip) };
         dataset.roidb_train   = cellfun(@(x) x.roidb_func(x), dataset.imdb_train, 'UniformOutput', false);
     case {'test'}
-        dataset.imdb_test     = imdb_from_voc(dataset.devkit, 'trainval', '2012', use_flip) ;
+        dataset.imdb_test     = imdb_from_voc(devkit, 'trainval', '2012', use_flip) ;
         dataset.roidb_test    = dataset.imdb_test.roidb_func(dataset.imdb_test);
     otherwise
         error('usage = ''train'' or ''test''');

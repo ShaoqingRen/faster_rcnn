@@ -7,7 +7,7 @@ function nvmex(cuFileName, outDir)
 if ispc % Windows
  Host_Compiler_Location = '-ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64"';
  CUDA_INC_Location = ['"' getenv('CUDA_PATH')  '\include"'];
-    CUDA_SAMPLES_Location =['"' getenv('NVCUDASAMPLES5_5_ROOT')  '\common\inc"'];
+    CUDA_SAMPLES_Location =['"' getenv('NVCUDASAMPLES6_5_ROOT')  '\common\inc"'];
     PIC_Option = '';
     if ( strcmp(computer('arch'),'win32') ==1)
         machine_str = ' --machine 32 ';
