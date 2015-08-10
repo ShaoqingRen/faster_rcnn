@@ -27,8 +27,8 @@ If you find Faster R-CNN useful in your research, please consider citing:
 
 ### Requirements: software
 
-1. Caffe build for Faster R-CNN (included in this repository)
-    - If you are using Windows, you may download a compiled mex file by running fetch_data/fetch_caffe_library.m
+1. `Caffe` build for Faster R-CNN (included in this repository)
+    - If you are using Windows, you may download a compiled mex file by running `fetch_data/fetch_caffe_library.m`
     - If you are using Linux or you want to compile for Windows, please follow the instructions on our Caffe branch.
 2.	MATLAB
  
@@ -45,30 +45,30 @@ GPU memory
     - 8GB GPU memory for VGG-16 net
 
 ### Preparation for Testing:
-1.	Run fetch_data/fetch_caffe_library.m to download a compiled Caffe mex (for Windows only).
-2.	Run faster_rcnn_build.m
-3.	Run startup.m
+1.	Run `fetch_data/fetch_caffe_library.m` to download a compiled Caffe mex (for Windows only).
+2.	Run `faster_rcnn_build.m`
+3.	Run `startup.m`
 
 ### Testing Demo:
-1.	Run fetch_data/fetch_model_trained.m to download our trained models.
-2.	Run experiments/script_faster_rcnn_demo.m to test a single demo image.
+1.	Run `fetch_data/fetch_model_trained.m` to download our trained models.
+2.	Run `experiments/script_faster_rcnn_demo.m` to test a single demo image.
     - The first run might be slower due to memory load.
     - The running time on K40 of this code is about 220ms/image, 10% more than we reported in the paper. This is because of unknown issues when we switch from our older version of Caffe to the newer one.
     - The speed on Titan X is about 2x of on K40.
 
 ### Preparation for Training:
-1.	Run fetch_data/fetch_model_ZF.m to download an ImageNet-pre-trained ZF net.
-2.	Run fetch_data/fetch_model_VGG16.m to download an ImageNet-pre-trained VGG-16 net.
+1.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
+2.	Run `fetch_data/fetch_model_VGG16.m` to download an ImageNet-pre-trained VGG-16 net.
 3.	Download VOC 2007 and 2012 data to ./datasets
 
 ### Training:
-1. Run experiments/script_fast**er**_rcnn_VOC2007_ZF.m to train a model with ZF net. It runs four steps as follows:
+1. Run `experiments/script_fast**er**_rcnn_VOC2007_ZF.m` to train a model with ZF net. It runs four steps as follows:
     - Train RPN with conv layers tuned; compute RPN results on the train/test sets.
     - Train Fast R-CNN with conv layers tuned using step-1 RPN proposals; evaluate detection mAP.
     - Train RPN with conv layers fixed; compute RPN results on the train/test sets. 
     - Train Fast R-CNN with conv layers fixed using step-3 RPN proposals; evaluate detection mAP.
     - **Note**: the entire training time is ~12 hours on K40.
-2. Run experiments/script_fast**er**_rcnn_VOC2007_VGG16.m to train a model with VGG net.
+2. Run `experiments/script_fast**er**_rcnn_VOC2007_VGG16.m` to train a model with VGG net.
 
 
 ### Downloads
