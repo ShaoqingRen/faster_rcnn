@@ -81,13 +81,13 @@ GPU memory
 0.	Download VOC 2007 and 2012 data to ./datasets
 
 ### Training:
-0. Run `experiments/script_fast**er**_rcnn_VOC2007_ZF.m` to train a model with ZF net. It runs four steps as follows:
+0. Run `experiments/script_faster_rcnn_VOC2007_ZF.m` to train a model with ZF net. It runs four steps as follows:
     - Train RPN with conv layers tuned; compute RPN results on the train/test sets.
     - Train Fast R-CNN with conv layers tuned using step-1 RPN proposals; evaluate detection mAP.
     - Train RPN with conv layers fixed; compute RPN results on the train/test sets. 
     - Train Fast R-CNN with conv layers fixed using step-3 RPN proposals; evaluate detection mAP.
     - **Note**: the entire training time is ~12 hours on K40.
-0. Run `experiments/script_fast**er**_rcnn_VOC2007_VGG16.m` to train a model with VGG net.
+0. Run `experiments/script_faster_rcnn_VOC2007_VGG16.m` to train a model with VGG net.
     - **Note**: the entire training time is ~2 days on K40.
 
 ### Resources
