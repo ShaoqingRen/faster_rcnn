@@ -34,56 +34,66 @@ Faster RCNN, VGG-16       | VOC 2012 trainval       | VOC 2012 test        | 67.
 Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval       | VOC 2012 test        | 70.4% | 196ms
 
 
+
+### Contents
+0. [Requirements: software](#requirements-software)
+0. [Requirements: hardware](#requirements-hardware)
+0. [Preparation for Testing](#preparation-for-testing)
+0. [Testing Demo](#testing-demo)
+0. [Preparation for Training](#preparation-for-training)
+0. [Training](#training)
+0. [Resources](#resources)
+ 
 ### Requirements: software
 
-1. `Caffe` build for Faster R-CNN (included in this repository)
+0. `Caffe` build for Faster R-CNN (included in this repository)
     - If you are using Windows, you may download a compiled mex file by running `fetch_data/fetch_caffe_library.m`
     - If you are using Linux or you want to compile for Windows, please follow the instructions on our Caffe branch.
-2.	MATLAB
+0.	MATLAB
  
     
-### Requirement: hardware
+### Requirements: hardware
 
 GPU memory
 
-1. Region Proposal Network (RPN)
+0. Region Proposal Network (RPN)
     - 2GB GPU memory for ZF net
     - 5GB GPU memory for VGG-16 net
-2. Ojbect Detection Network (Fast R-CNN)
+0. Ojbect Detection Network (Fast R-CNN)
     - 3GB GPU memory for ZF net
     - 8GB GPU memory for VGG-16 net
 
 ### Preparation for Testing:
-1.	Run `fetch_data/fetch_caffe_library.m` to download a compiled Caffe mex (for Windows only).
-2.	Run `faster_rcnn_build.m`
-3.	Run `startup.m`
+0.	Run `fetch_data/fetch_caffe_library.m` to download a compiled Caffe mex (for Windows only).
+0.	Run `faster_rcnn_build.m`
+0.	Run `startup.m`
 
 ### Testing Demo:
-1.	Run `fetch_data/fetch_model_trained.m` to download our trained models.
-2.	Run `experiments/script_faster_rcnn_demo.m` to test a single demo image.
+0.	Run `fetch_data/fetch_model_trained.m` to download our trained models.
+0.	Run `experiments/script_faster_rcnn_demo.m` to test a single demo image.
     - The first run might be slower due to memory load.
     - The running time on K40 of this code is about 220ms/image, 10% more than we reported in the paper. This is because of unknown issues when we switch from our older version of Caffe to the newer one.
     - The speed on Titan X is about 2x of on K40.
 
 ### Preparation for Training:
-1.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
-2.	Run `fetch_data/fetch_model_VGG16.m` to download an ImageNet-pre-trained VGG-16 net.
-3.	Download VOC 2007 and 2012 data to ./datasets
+0.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
+0.	Run `fetch_data/fetch_model_VGG16.m` to download an ImageNet-pre-trained VGG-16 net.
+0.	Download VOC 2007 and 2012 data to ./datasets
 
 ### Training:
-1. Run `experiments/script_fast**er**_rcnn_VOC2007_ZF.m` to train a model with ZF net. It runs four steps as follows:
+0. Run `experiments/script_fast**er**_rcnn_VOC2007_ZF.m` to train a model with ZF net. It runs four steps as follows:
     - Train RPN with conv layers tuned; compute RPN results on the train/test sets.
     - Train Fast R-CNN with conv layers tuned using step-1 RPN proposals; evaluate detection mAP.
     - Train RPN with conv layers fixed; compute RPN results on the train/test sets. 
     - Train Fast R-CNN with conv layers fixed using step-3 RPN proposals; evaluate detection mAP.
     - **Note**: the entire training time is ~12 hours on K40.
-2. Run `experiments/script_fast**er**_rcnn_VOC2007_VGG16.m` to train a model with VGG net.
+0. Run `experiments/script_fast**er**_rcnn_VOC2007_VGG16.m` to train a model with VGG net.
     - **Note**: the entire training time is ~2 days on K40.
 
 ### Resources
 
-1. Experiment logs: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17290&authkey=!AGhH4z667tHYYEw&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1nt48EJB)
-2. Regions proposals of our trained RPN:
+0. Experiment logs: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17290&authkey=!AGhH4z667tHYYEw&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1nt48EJB)
+0. Regions proposals of our trained RPN:
     - ZF net trained on VOC 07 trainval [To Add]
     - ZF net trained on VOC 07/12 trainval [To Add]
     - VGG net trained on VOC 07 trainval [To Add]
@@ -91,9 +101,9 @@ GPU memory
 
 If the automatic "fetch_data" fails, you may manually download resouces from:
 
-1. Pre-complied caffe mex:
+0. Pre-complied caffe mex:
     - Windows-based mex complied with VS2013 and Cuda6.5 [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17255&authkey=!AHOIeRzQKCYXD3U&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/m6sg347tiaqpcwy/caffe_mex.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1nZYOI)
-2. ImageNet-pretrained networks:
+0. ImageNet-pretrained networks:
     - Zeiler & Fergus (ZF) net [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17256&authkey=!AF7wGc1kbUTfI7o&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/sw58b2froihzwyf/model_ZF.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1sj3K21B)
     - VGG-16 net [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17257&authkey=!AO38BiePXqYrz5M&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/z5rrji25uskha73/model_VGG16.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1pJ9opyr)
-3. Final RPN+FastRCNN models [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17292&authkey=!AFCIads9CKr5-4s&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/jswrnkaln47clg2/faster_rcnn_final_model.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1eQwF64y)
+0. Final RPN+FastRCNN models [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17292&authkey=!AFCIads9CKr5-4s&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/jswrnkaln47clg2/faster_rcnn_final_model.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1eQwF64y)
