@@ -11,7 +11,7 @@ try
     unzip('caffe_mex.zip', '..');
 
     fprintf('Done.\n');
-    system('del caffe_mex.zip');
+    delete('caffe_mex.zip');
 catch
     fprintf('Error in downloading, please try links in README.md https://github.com/ShaoqingRen/faster_rcnn'); 
 end
