@@ -25,6 +25,15 @@ If you find Faster R-CNN useful in your research, please consider citing:
         Year = {2015}
     }
 
+### Main resutls
+               | training data | test data | mAP | time/img
+-------------- |:------------:|:------------:|:------------:|:------------:
+Faster RCNN, VGG-16       | VOC 2007 trainval        | VOC 2007 test        | 69.9% | 196ms
+Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval       | VOC 2007 test        | 73.2% | 196ms
+Faster RCNN, VGG-16       | VOC 2012 trainval       | VOC 2012 test        | 67.0% | 196ms
+Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval       | VOC 2012 test        | 70.4% | 196ms
+
+
 ### Requirements: software
 
 1. `Caffe` build for Faster R-CNN (included in this repository)
