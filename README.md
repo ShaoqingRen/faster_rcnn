@@ -1,10 +1,10 @@
-# *Faster* R-CNN
+# *Faster* R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
 
 By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun at Microsoft Research
 
 ### Introduction
 
-Fast**er** R-CNN is a framework for object detection with deep CNNs including a Region Proposal Network (RPN) and an Object Detection Network. Both networks are trained for sharing convolutional layers for fast testing. 
+Fast**er** R-CNN is an object detection framework based on deep convolutional networks, which includes a Region Proposal Network (RPN) and an Object Detection Network. Both networks are trained for sharing convolutional layers for fast testing. 
 
 Faster R-CNN was initially described in an [arXiv tech report](http://arxiv.org/abs/1506.01497).
 
@@ -26,13 +26,14 @@ If you find Faster R-CNN useful in your research, please consider citing:
     }
 
 ### Main resutls
-               | training data | test data | mAP | time/img
--------------- |:------------:|:------------:|:------------:|:------------:
-Faster RCNN, VGG-16       | VOC 2007 trainval        | VOC 2007 test        | 69.9% | 196ms
-Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval       | VOC 2007 test        | 73.2% | 196ms
-Faster RCNN, VGG-16       | VOC 2012 trainval       | VOC 2012 test        | 67.0% | 196ms
-Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval       | VOC 2012 test        | 70.4% | 196ms
+                          | training data                          | test data            | mAP   | time/img
+------------------------- |:--------------------------------------:|:--------------------:|:-----:|:-----:
+Faster RCNN, VGG-16       | VOC 2007 trainval                      | VOC 2007 test        | 69.9% | 196ms
+Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval      | VOC 2007 test        | 73.2% | 196ms
+Faster RCNN, VGG-16       | VOC 2012 trainval                      | VOC 2012 test        | 67.0% | 196ms
+Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval | VOC 2012 test        | 70.4% | 196ms
 
+The mAP results are subject to random variations, which we estimate are ~0.5% mAP.
 
 
 ### Contents
@@ -46,15 +47,15 @@ Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval       | VOC 2
  
 ### Requirements: software
 
-0. `Caffe` build for Faster R-CNN (included in this repository)
+0. `Caffe` build for Faster R-CNN (included in this repository, see `external/caffe`)
     - If you are using Windows, you may download a compiled mex file by running `fetch_data/fetch_caffe_library.m`
-    - If you are using Linux or you want to compile for Windows, please follow the instructions on our Caffe branch.
+    - If you are using Linux or you want to compile for Windows, please follow the [instructions](https://github.com/ShaoqingRen/caffe/tree/faster-R-CNN) on our Caffe branch.
 0.	MATLAB
  
     
 ### Requirements: hardware
 
-GPU memory
+GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 
 0. Region Proposal Network (RPN)
     - 2GB GPU memory for ZF net
@@ -63,10 +64,12 @@ GPU memory
     - 3GB GPU memory for ZF net
     - 8GB GPU memory for VGG-16 net
 
+
 ### Preparation for Testing:
 0.	Run `fetch_data/fetch_caffe_library.m` to download a compiled Caffe mex (for Windows only).
 0.	Run `faster_rcnn_build.m`
 0.	Run `startup.m`
+
 
 ### Testing Demo:
 0.	Run `fetch_data/fetch_model_trained.m` to download our trained models.
@@ -75,10 +78,12 @@ GPU memory
     - The running time on K40 of this code is about 220ms/image, 10% more than we reported in the paper. This is because of unknown issues when we switch from our older version of Caffe to the newer one.
     - The speed on Titan X is about 2x of on K40.
 
+
 ### Preparation for Training:
 0.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
 0.	Run `fetch_data/fetch_model_VGG16.m` to download an ImageNet-pre-trained VGG-16 net.
 0.	Download VOC 2007 and 2012 data to ./datasets
+
 
 ### Training:
 0. Run `experiments/script_faster_rcnn_VOC2007_ZF.m` to train a model with ZF net. It runs four steps as follows:
@@ -89,6 +94,7 @@ GPU memory
     - **Note**: the entire training time is ~12 hours on K40.
 0. Run `experiments/script_faster_rcnn_VOC2007_VGG16.m` to train a model with VGG net.
     - **Note**: the entire training time is ~2 days on K40.
+0. Check other scripts in `./experiments` for more settings.
 
 ### Resources
 
