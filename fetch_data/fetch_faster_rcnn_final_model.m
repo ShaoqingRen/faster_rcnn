@@ -4,7 +4,7 @@ cd(fileparts(mfilename('fullpath')));
 
 try
     fprintf('Downloading faster_rcnn_final_model...\n');
-    urlwrite('https://onedrive.live.com/download?resid=4006CBB8476FF777!17291&authkey=!AEH1ks0uYgn-iNY&ithint=file%2crar', ...
+    urlwrite('https://onedrive.live.com/download?resid=4006CBB8476FF777!17292&authkey=!AFCIads9CKr5-4s&ithint=file%2czip', ...
         'faster_rcnn_final_model.zip');
 
     fprintf('Unzipping...\n');
