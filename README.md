@@ -28,8 +28,8 @@ If you find Faster R-CNN useful in your research, please consider citing:
 ### Requirements: software
 
 1. Caffe build for Faster R-CNN (included in this repository)
-    i.	If you are using Windows, you may download a compiled mex file by running fetch_data/fetch_caffe_library.m
-    ii.	If you are using Linux or you want to compile for Windows, please follow the instructions on our Caffe branch.
+    - If you are using Windows, you may download a compiled mex file by running fetch_data/fetch_caffe_library.m
+    - If you are using Linux or you want to compile for Windows, please follow the instructions on our Caffe branch.
 2.	MATLAB
  
     
