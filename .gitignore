@@ -12,7 +12,7 @@ $RECYCLE.BIN/
 models/
 data/
 datasets/
-external/
+external/caffe/matlab
 output/
 cachedir/
 imdb/cache
