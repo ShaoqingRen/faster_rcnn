@@ -8,7 +8,7 @@ By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun at Microsoft Research
 
 Faster R-CNN was initially described in an [arXiv tech report](http://arxiv.org/abs/1506.01497).
 
-Note: This repo contains a matlab version re-implementation of Fast R-CNN. Details and related paper about Fast R-CNN (see: [rbgirshick/fast-rcnn](https://github.com/rbgirshick/fast-rcnn)).
+This repo contains a MATLAB re-implementation of Fast R-CNN. Details about Fast R-CNN are in: [rbgirshick/fast-rcnn](https://github.com/rbgirshick/fast-rcnn).
 
 ### License
 
@@ -18,9 +18,9 @@ Faster R-CNN is released under the MIT License (refer to the LICENSE file for de
 
 If you find Faster R-CNN useful in your research, please consider citing:
 
-    @article{girshick15fastrcnn,
+    @article{ren15fasterrcnn,
         Author = {Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun},
-        Title = {Faster R-CNN},
+        Title = {{Faster R-CNN}: Towards Real-Time Object Detection with Region Proposal Networks},
         Journal = {arXiv preprint arXiv:1506.01497},
         Year = {2015}
     }
