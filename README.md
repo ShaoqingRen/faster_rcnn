@@ -35,13 +35,28 @@ If you find Faster R-CNN useful in your research, please consider citing:
     
 ### Requirement: hardware
 
-GPU memory 
-    1.	Region Proposal Networks (RPN)
-        i.	2GB GPU memory for ZF net
-        ii.	5GB GPU memory for VGG-16 net
-    2.	Detection Network (Fast R-CNN)
-        i.	3GB GPU memory for ZF net
-        ii.	8GB GPU memory for VGG-16 net
+GPU memory
+
+1. Region Proposal Network (RPN)
+    - 2GB GPU memory for ZF net
+    - 5GB GPU memory for VGG-16 net
+2. Ojbect Detection Network (Fast R-CNN)
+    - 3GB GPU memory for ZF net
+    - 8GB GPU memory for VGG-16 net
+
+### Preparation:
+1.	Run fetch_data/fetch_caffe_library.m to download a compiled Caffe mex (for Windows only).
+2.	Run fetch_data/fetch_model_ZF.m to download an ImageNet-pre-trained ZF net.
+3.	Run fetch_data/fetch_model_VGG16.m to download an ImageNet-pre-trained VGG-16 net.
+4.	Run faster_rcnn_build.m
+5.	Run startup.m
+
+### Testing Demo:
+1.	Run fetch_data/fetch_model_trained.m to download our trained models.
+2.	Run experiments/script_faster_rcnn_demo.m to test a single demo image.
+    - The first run might be slower due to memory load.
+    - The running time on K40 of this code is about 220ms/image, 10% more than we reported in the paper. This is because of unknown issues when we switch from our older version of Caffe to the newer one.
+    - The speed on Titan X is about 2x of on K40.
 
 
 ### Downloads
