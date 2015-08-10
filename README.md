@@ -1,10 +1,10 @@
-# *Faster* R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
+# *Faster* R-CNN
 
 By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun at Microsoft Research
 
 ### Introduction
 
-**Faster R-CNN** is a framework for object detection with deep CNNs including a Region Proposal Network (RPN) and an Object Detection Network. Both networks are trained for sharing convolutional layers for fast testing. 
+Fast**er** R-CNN is a framework for object detection with deep CNNs including a Region Proposal Network (RPN) and an Object Detection Network. Both networks are trained for sharing convolutional layers for fast testing. 
 
 Faster R-CNN was initially described in an [arXiv tech report](http://arxiv.org/abs/1506.01497).
 
@@ -44,12 +44,10 @@ GPU memory
     - 3GB GPU memory for ZF net
     - 8GB GPU memory for VGG-16 net
 
-### Preparation:
+### Preparation for Testing:
 1.	Run fetch_data/fetch_caffe_library.m to download a compiled Caffe mex (for Windows only).
-2.	Run fetch_data/fetch_model_ZF.m to download an ImageNet-pre-trained ZF net.
-3.	Run fetch_data/fetch_model_VGG16.m to download an ImageNet-pre-trained VGG-16 net.
-4.	Run faster_rcnn_build.m
-5.	Run startup.m
+2.	Run faster_rcnn_build.m
+3.	Run startup.m
 
 ### Testing Demo:
 1.	Run fetch_data/fetch_model_trained.m to download our trained models.
@@ -57,6 +55,20 @@ GPU memory
     - The first run might be slower due to memory load.
     - The running time on K40 of this code is about 220ms/image, 10% more than we reported in the paper. This is because of unknown issues when we switch from our older version of Caffe to the newer one.
     - The speed on Titan X is about 2x of on K40.
+
+### Preparation for Training:
+1.	Run fetch_data/fetch_model_ZF.m to download an ImageNet-pre-trained ZF net.
+2.	Run fetch_data/fetch_model_VGG16.m to download an ImageNet-pre-trained VGG-16 net.
+3.	Download VOC 2007 and 2012 data to ./datasets
+
+### Training:
+1. Run experiments/script_fast**er**_rcnn_VOC2007_ZF.m to train a model with ZF net. It runs four steps as follows:
+    - Train RPN with conv layers tuned; compute RPN results on the train/test sets.
+    - Train Fast R-CNN with conv layers tuned using step-1 RPN proposals; evaluate detection mAP.
+    - Train RPN with conv layers fixed; compute RPN results on the train/test sets. 
+    - Train Fast R-CNN with conv layers fixed using step-3 RPN proposals; evaluate detection mAP.
+    - **Note**: the entire training time is ~12 hours on K40.
+2. Run experiments/script_fast**er**_rcnn_VOC2007_VGG16.m to train a model with VGG net.
 
 
 ### Downloads
