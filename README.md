@@ -27,18 +27,22 @@ If you find Faster R-CNN useful in your research, please consider citing:
 
 ### Requirements: software
 
-1. Requirements for matlab interface of [Caffe](http://caffe.berkeleyvision.org/installation.html). Please use the modified     [Caffe for Faster R-CNN](https://github.com/ShaoqingRen/caffe/tree/faster-R-CNN).
-2. MATLAB 
+1. Caffe build for Faster R-CNN (included in this repository)
+    i.	If you are using Windows, you may download a compiled mex file by running fetch_data/fetch_caffe_library.m
+    ii.	If you are using Linux or you want to compile for Windows, please follow the instructions on our Caffe branch.
+2.	MATLAB
+ 
     
-### Requirements: hardware
+### Requirement: hardware
 
 GPU memory 
-- Region Proposal Networks (RPN)
-   - ~2GB GPU memory for Zeiler & Fergus (ZF) network 
-   - ~5GB GPU memory for VGG 16-layers network 
-- Detection Network (Fast R-CNN)
-   - ~3GB GPU memory for Zeiler & Fergus (ZF) network 
-   - ~8GB GPU memory for VGG 16-layers network 
+    1.	Region Proposal Networks (RPN)
+        i.	2GB GPU memory for ZF net
+        ii.	5GB GPU memory for VGG-16 net
+    2.	Detection Network (Fast R-CNN)
+        i.	3GB GPU memory for ZF net
+        ii.	8GB GPU memory for VGG-16 net
+
 
 ### Downloads
 1. Prototxts and related pre-trained network on ImageNet classification task
