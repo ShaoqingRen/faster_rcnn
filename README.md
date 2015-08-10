@@ -4,7 +4,7 @@ By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun at Microsoft Research
 
 ### Introduction
 
-**Faster R-CNN** is a framework for object detection with deep ConvNets including windows proposal network (RPN) and detection network. These two networks are trained for sharing convolution layers to speed up testing speed. 
+**Faster R-CNN** is a framework for object detection with deep CNNs including a Region Proposal Network (RPN) and an Object Detection Network. Both networks are trained for sharing convolutional layers for fast testing. 
 
 Faster R-CNN was initially described in an [arXiv tech report](http://arxiv.org/abs/1506.01497).
 
