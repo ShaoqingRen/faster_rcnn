@@ -5,6 +5,9 @@ function showboxes(im, boxes, legends, color_conf)
 % -------------------------------------------------------
 
 fix_width = 800;
+if isa(im, 'gpuArray')
+    im = gather(im);
+end
 imsz = size(im);
 scale = fix_width / imsz(2);
 im = imresize(im, scale);

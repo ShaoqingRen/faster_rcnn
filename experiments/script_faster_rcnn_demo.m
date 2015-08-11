@@ -17,11 +17,15 @@ opts.use_gpu                = true;
 opts.test_scales            = 600;
 
 %% -------------------- INIT_MODEL --------------------
-model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC2007_vgg_16layers');
+model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_vgg_16layers');
 proposal_detection_model    = load_proposal_detection_model(model_dir);
 
 proposal_detection_model.conf_proposal.test_scales = opts.test_scales;
 proposal_detection_model.conf_detection.test_scales = opts.test_scales;
+if opts.use_gpu
+    proposal_detection_model.conf_proposal.image_means = gpuArray(proposal_detection_model.conf_proposal.image_means);
+    proposal_detection_model.conf_detection.image_means = gpuArray(proposal_detection_model.conf_detection.image_means);
+end
 
 % caffe.init_log(fullfile(pwd, 'caffe_log'));
 % proposal net
@@ -41,6 +45,10 @@ end
 %% -------------------- TESTING --------------------
 im = imread(fullfile(pwd, '004545.jpg'));
 
+if opts.use_gpu
+    im = gpuArray(im);
+end
+
 for j = 1:10
      % test proposal
     th = tic();
@@ -54,7 +62,7 @@ for j = 1:10
     th = tic();
     if proposal_detection_model.is_share_feature
         [boxes, scores]             = fast_rcnn_conv_feat_detect(proposal_detection_model.conf_detection, fast_rcnn_net, im, ...
-                                        rpn_net.blobs(proposal_detection_model.last_shared_output_blob_name).get_data(), ...
+                                        rpn_net.blobs(proposal_detection_model.last_shared_output_blob_name), ...
                                         aboxes(:, 1:4), opts.after_nms_topN);
     else                   
         [boxes, scores]             = fast_rcnn_im_detect(proposal_detection_model.conf_detection, fast_rcnn_net, im, ...

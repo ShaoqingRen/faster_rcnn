@@ -1,5 +1,5 @@
-function [pred_boxes, scores] = fast_rcnn_conv_feat_detect(conf, caffe_net, im, conv_feat, boxes, max_rois_num_in_gpu)
-% [pred_boxes, scores] = fast_rcnn_conv_feat_detect(conf, caffe_net, im, conv_feat, boxes, max_rois_num_in_gpu)
+function [pred_boxes, scores] = fast_rcnn_conv_feat_detect(conf, caffe_net, im, conv_feat_blob, boxes, max_rois_num_in_gpu)
+% [pred_boxes, scores] = fast_rcnn_conv_feat_detect(conf, caffe_net, im, conv_feat_blob, boxes, max_rois_num_in_gpu)
 % --------------------------------------------------------
 % Fast R-CNN
 % Reimplementation based on Python Fast R-CNN (https://github.com/rbgirshick/fast-rcnn)
@@ -9,18 +9,13 @@ function [pred_boxes, scores] = fast_rcnn_conv_feat_detect(conf, caffe_net, im, 
 
     [rois_blob, ~] = get_blobs(conf, im, boxes);
     
-    % When mapping from image ROIs to feature map ROIs, there's some aliasing
-    % (some distinct image ROIs get mapped to the same feature ROI).
-    % Here, we identify duplicate feature ROIs, so we only compute features
-    % on the unique subset.
-    [~, index, inv_index] = unique(rois_blob, 'rows');
-    rois_blob = rois_blob(index, :);
-    boxes = boxes(index, :);
-    
     % permute data into caffe c++ memory, thus [num, channels, height, width]
     rois_blob = rois_blob - 1; % to c's index (start from 0)
     rois_blob = permute(rois_blob, [3, 4, 2, 1]);
     rois_blob = single(rois_blob);
+    
+    % set conv feature map as 'data'
+    caffe_net.blobs('data').copy_data_from(conv_feat_blob);
     
     total_rois = size(rois_blob, 4);
     total_scores = cell(ceil(total_rois / max_rois_num_in_gpu), 1);
@@ -31,7 +26,8 @@ function [pred_boxes, scores] = fast_rcnn_conv_feat_detect(conf, caffe_net, im, 
         sub_ind_end = min(total_rois, i * max_rois_num_in_gpu);
         sub_rois_blob = rois_blob(:, :, :, sub_ind_start:sub_ind_end);
         
-        net_inputs = {conv_feat, sub_rois_blob};
+        % only set rois blob here
+        net_inputs = {[], sub_rois_blob};
 
         % Reshape net's input blobs
         caffe_net.reshape_as_input(net_inputs);
@@ -62,10 +58,6 @@ function [pred_boxes, scores] = fast_rcnn_conv_feat_detect(conf, caffe_net, im, 
     
     pred_boxes = fast_rcnn_bbox_transform_inv(boxes, box_deltas);
     pred_boxes = clip_boxes(pred_boxes, size(im, 2), size(im, 1));
-
-    % Map scores and predictions back to the original set of boxes
-    scores = scores(inv_index, :);
-    pred_boxes = pred_boxes(inv_index, :);
     
     % remove scores and boxes for back-ground
     pred_boxes = pred_boxes(:, 5:end);
