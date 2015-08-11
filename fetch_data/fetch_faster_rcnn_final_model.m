@@ -11,7 +11,7 @@ try
     unzip('faster_rcnn_final_model.zip', '..');
 
     fprintf('Done.\n');
-    system('del faster_rcnn_final_model.zip');
+    delete('faster_rcnn_final_model.zip');
 catch
     fprintf('Error in downloading, please try links in README.md https://github.com/ShaoqingRen/faster_rcnn'); 
 end

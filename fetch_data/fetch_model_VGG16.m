@@ -11,7 +11,7 @@ try
     unzip('model_VGG16.zip', '..');
 
     fprintf('Done.\n');
-    system('del model_VGG16.zip');
+    delete('model_VGG16.zip');
 catch
     fprintf('Error in downloading, please try links in README.md https://github.com/ShaoqingRen/faster_rcnn');
 end

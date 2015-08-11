@@ -11,7 +11,7 @@ try
     unzip('model_ZF.zip', '..');
 
     fprintf('Done.\n');
-    system('del model_ZF.zip');
+    delete('model_ZF.zip');
 catch
     fprintf('Error in downloading, please try links in README.md https://github.com/ShaoqingRen/faster_rcnn'); 
 end
