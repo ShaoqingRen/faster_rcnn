@@ -130,6 +130,6 @@ If the automatic "fetch_data" fails, you may manually download resouces from:
 0. ImageNet-pretrained networks:
     - Zeiler & Fergus (ZF) net [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17255&authkey=!AHOIeRzQKCYXD3U&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/sw58b2froihzwyf/model_ZF.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1sj3K21B)
     - VGG-16 net [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17319&authkey=!APSc546R6TbCCl4&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/z5rrji25uskha73/model_VGG16.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1dDoAna5)
-0. Final RPN+FastRCNN models: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17292&authkey=!AFCIads9CKr5-4s&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/jswrnkaln47clg2/faster_rcnn_final_model.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1hq2brlq)
+0. Final RPN+FastRCNN models: [OneDrive]https://onedrive.live.com/download?resid=4006CBB8476FF777!17323&authkey=!AJOz-vdYtdPwuKo&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/jswrnkaln47clg2/faster_rcnn_final_model.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1c02PWQk)
 
 
