@@ -30,10 +30,10 @@ If you find Faster R-CNN useful in your research, please consider citing:
 ### Main resutls
                           | training data                          | test data            | mAP   | time/img
 ------------------------- |:--------------------------------------:|:--------------------:|:-----:|:-----:
-Faster RCNN, VGG-16       | VOC 2007 trainval                      | VOC 2007 test        | 69.9% | 196ms
-Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval      | VOC 2007 test        | 73.2% | 196ms
-Faster RCNN, VGG-16       | VOC 2012 trainval                      | VOC 2012 test        | 67.0% | 196ms
-Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval | VOC 2012 test        | 70.4% | 196ms
+Faster RCNN, VGG-16       | VOC 2007 trainval                      | VOC 2007 test        | 69.9% | 198ms
+Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval      | VOC 2007 test        | 73.2% | 198ms
+Faster RCNN, VGG-16       | VOC 2012 trainval                      | VOC 2012 test        | 67.0% | 198ms
+Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval | VOC 2012 test        | 70.4% | 198ms
 
 **Note**: The mAP results are subject to random variations. We have run 5 times independently for ZF net, and the mAPs are 59.9 (as in the paper), 60.4, 59.5, 60.1, and 59.5, with a mean of 59.88 and std 0.39.
 
@@ -79,20 +79,23 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 0.	Run `experiments/script_faster_rcnn_demo.m` to test a single demo image.
     - You will see the timing information as below. We get the following running time on K40 @ 875 MHz and Intel Xeon CPU E5-2650 v2 @ 2.60GHz for the demo images with VGG-16:
 	```Shell
-	001763.jpg (500x375): time 0.196s (resize+conv+proposal: 0.152s, nms+regionwise: 0.044s)
-	004545.jpg (500x375): time 0.203s (resize+conv+proposal: 0.152s, nms+regionwise: 0.051s)
-	000542.jpg (500x375): time 0.183s (resize+conv+proposal: 0.153s, nms+regionwise: 0.031s)
+	001763.jpg (500x375): time 0.201s (resize+conv+proposal: 0.150s, nms+regionwise: 0.052s)
+	004545.jpg (500x375): time 0.201s (resize+conv+proposal: 0.151s, nms+regionwise: 0.050s)
+	000542.jpg (500x375): time 0.192s (resize+conv+proposal: 0.151s, nms+regionwise: 0.041s)
 	000456.jpg (500x375): time 0.202s (resize+conv+proposal: 0.152s, nms+regionwise: 0.050s)
-	001150.jpg (500x375): time 0.197s (resize+conv+proposal: 0.153s, nms+regionwise: 0.044s)
+	001150.jpg (500x375): time 0.194s (resize+conv+proposal: 0.151s, nms+regionwise: 0.043s)
+	mean time: 0.198s
 	```
 	and with ZF net:
 	```Shell
-	001763.jpg (500x375): time 0.056s (resize+conv+proposal: 0.032s, nms+regionwise: 0.024s)
-	004545.jpg (500x375): time 0.062s (resize+conv+proposal: 0.033s, nms+regionwise: 0.028s)
+	001763.jpg (500x375): time 0.061s (resize+conv+proposal: 0.032s, nms+regionwise: 0.029s)
+	004545.jpg (500x375): time 0.063s (resize+conv+proposal: 0.034s, nms+regionwise: 0.029s)
 	000542.jpg (500x375): time 0.052s (resize+conv+proposal: 0.034s, nms+regionwise: 0.018s)
-	000456.jpg (500x375): time 0.061s (resize+conv+proposal: 0.033s, nms+regionwise: 0.028s)
-	001150.jpg (500x375): time 0.058s (resize+conv+proposal: 0.033s, nms+regionwise: 0.025s)
+	000456.jpg (500x375): time 0.062s (resize+conv+proposal: 0.034s, nms+regionwise: 0.028s)
+	001150.jpg (500x375): time 0.058s (resize+conv+proposal: 0.034s, nms+regionwise: 0.023s)
+	mean time: 0.059s
 	```
+	- The visual results might be different from those in the paper due to numerical variations.
 
 ### Preparation for Training:
 0.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
