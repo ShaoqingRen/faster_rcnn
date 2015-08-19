@@ -4,11 +4,13 @@ By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun at Microsoft Research
 
 ### Introduction
 
-Fast**er** R-CNN is an object detection framework based on deep convolutional networks, which includes a Region Proposal Network (RPN) and an Object Detection Network. Both networks are trained for sharing convolutional layers for fast testing. 
+**Faster** R-CNN is an object detection framework based on deep convolutional networks, which includes a Region Proposal Network (RPN) and an Object Detection Network. Both networks are trained for sharing convolutional layers for fast testing. 
 
 Faster R-CNN was initially described in an [arXiv tech report](http://arxiv.org/abs/1506.01497).
 
 This repo contains a MATLAB re-implementation of Fast R-CNN. Details about Fast R-CNN are in: [rbgirshick/fast-rcnn](https://github.com/rbgirshick/fast-rcnn).
+
+This code has been tested on Windows 7/8 64-bit, Windows Server 2012 R2, and Linux, and on MATLAB 2014a.
 
 ### License
 
@@ -33,7 +35,7 @@ Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval      | VOC 2007 te
 Faster RCNN, VGG-16       | VOC 2012 trainval                      | VOC 2012 test        | 67.0% | 196ms
 Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval | VOC 2012 test        | 70.4% | 196ms
 
-The mAP results are subject to random variations, which we estimate are ~0.5% mAP.
+**Note**: The mAP results are subject to random variations. We have run 5 times independently for ZF net, and the mAPs are 59.9 (as in the paper), 60.4, 59.5, 60.1, and 59.5, with a mean of 59.88 and std 0.39.
 
 
 ### Contents
@@ -44,7 +46,8 @@ The mAP results are subject to random variations, which we estimate are ~0.5% mA
 0. [Preparation for Training](#preparation-for-training)
 0. [Training](#training)
 0. [Resources](#resources)
- 
+
+
 ### Requirements: software
 
 0. `Caffe` build for Faster R-CNN (included in this repository, see `external/caffe`)
@@ -74,10 +77,22 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 ### Testing Demo:
 0.	Run `fetch_data/fetch_faster_rcnn_final_model.m` to download our trained models.
 0.	Run `experiments/script_faster_rcnn_demo.m` to test a single demo image.
-    - The first run might be slower due to memory load.
-    - The running time on K40 of this code is about 220ms/image, 10% more than we reported in the paper. This is because of unknown issues when we switch from our older version of Caffe to the newer one.
-    - The speed on Titan X is about 2x of on K40.
-
+    - You will see the timing information as below. We get the following running time on K40 @ 875 MHz and Intel Xeon CPU E5-2650 v2 @ 2.60GHz for the demo images with VGG-16:
+	```Shell
+	001763.jpg (500x375): time 0.196s (resize+conv+proposal: 0.152s, nms+regionwise: 0.044s)
+	004545.jpg (500x375): time 0.203s (resize+conv+proposal: 0.152s, nms+regionwise: 0.051s)
+	000542.jpg (500x375): time 0.183s (resize+conv+proposal: 0.153s, nms+regionwise: 0.031s)
+	000456.jpg (500x375): time 0.202s (resize+conv+proposal: 0.152s, nms+regionwise: 0.050s)
+	001150.jpg (500x375): time 0.197s (resize+conv+proposal: 0.153s, nms+regionwise: 0.044s)
+	```
+	and with ZF net:
+	```Shell
+	001763.jpg (500x375): time 0.056s (resize+conv+proposal: 0.032s, nms+regionwise: 0.024s)
+	004545.jpg (500x375): time 0.062s (resize+conv+proposal: 0.033s, nms+regionwise: 0.028s)
+	000542.jpg (500x375): time 0.052s (resize+conv+proposal: 0.034s, nms+regionwise: 0.018s)
+	000456.jpg (500x375): time 0.061s (resize+conv+proposal: 0.033s, nms+regionwise: 0.028s)
+	001150.jpg (500x375): time 0.058s (resize+conv+proposal: 0.033s, nms+regionwise: 0.025s)
+	```
 
 ### Preparation for Training:
 0.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
