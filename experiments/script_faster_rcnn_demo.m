@@ -6,7 +6,7 @@ clear is_valid_handle; % to clear init_key
 run(fullfile(fileparts(fileparts(mfilename('fullpath'))), 'startup'));
 %% -------------------- CONFIG --------------------
 opts.caffe_version          = 'caffe_faster_rcnn';
-opts.gpu_id                 = 1; %auto_select_gpu;
+opts.gpu_id                 = auto_select_gpu;
 active_caffe_mex(opts.gpu_id, opts.caffe_version);
 
 opts.per_nms_topN           = 6000;
@@ -66,6 +66,7 @@ end
 %% -------------------- TESTING --------------------
 im_names = {'001763.jpg', '004545.jpg', '000542.jpg', '000456.jpg', '001150.jpg'};
 
+running_time = [];
 for j = 1:length(im_names)
     
     im = imread(fullfile(pwd, im_names{j}));
@@ -94,7 +95,9 @@ for j = 1:length(im_names)
     end
     t_detection = toc(th);
     
-    fprintf('%s (%dx%d): time %.3fs (resize+conv+proposal: %.3fs, nms+regionwise: %.3fs)\n', im_names{j}, size(im, 2), size(im, 1), t_proposal + t_nms + t_detection, t_proposal, t_nms+t_detection);
+    fprintf('%s (%dx%d): time %.3fs (resize+conv+proposal: %.3fs, nms+regionwise: %.3fs)\n', im_names{j}, ...
+        size(im, 2), size(im, 1), t_proposal + t_nms + t_detection, t_proposal, t_nms+t_detection);
+    running_time(end+1) = t_proposal + t_nms + t_detection;
     
     % visualize
     classes = proposal_detection_model.classes;
@@ -111,6 +114,7 @@ for j = 1:length(im_names)
     showboxes(im, boxes_cell, classes, 'voc');
     pause(0.1);
 end
+fprintf('mean time: %.3fs\n', mean(running_time));
 
 caffe.reset_all(); 
 clear mex;
