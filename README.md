@@ -95,7 +95,14 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 	001150.jpg (500x375): time 0.058s (resize+conv+proposal: 0.034s, nms+regionwise: 0.023s)
 	mean time: 0.059s
 	```
-	- The visual results might be different from those in the paper due to numerical variations.
+    - The visual results might be different from those in the paper due to numerical variations.	
+    - Running time on other GPUs
+    
+           GPU / mean time        |        VGG-16        |        ZF          
+	:------------------------:|:--------------------:|:--------------------:
+		  K40             |        198ms         |       59ms       
+	     Titan Black          |        174ms         |       56ms       
+		Titan X           |        151ms         |       59ms
 
 ### Preparation for Training:
 0.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
