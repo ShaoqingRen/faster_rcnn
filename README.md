@@ -125,10 +125,11 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 
 0. Experiment logs: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17290&authkey=!AGhH4z667tHYYEw&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1ntJ3dLv)
 0. Regions proposals of our trained RPN:
-    - ZF net trained on VOC 07 trainval [To Add]
-    - ZF net trained on VOC 07/12 trainval [To Add]
-    - VGG net trained on VOC 07 trainval [To Add]
-    - VGG net trained on VOC 07/12 trainval [To Add]
+    - ZF net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17331&authkey=!APJHX5JQCLUGHK0&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1dDFGerf)
+    - ZF net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17330&authkey=!AFy6VjnKXzk9aAQ&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1jGAgkZW)
+    - VGG net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17328&authkey=!ANKPe_Rn1h4htNw&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1qWHv4JU)
+    - VGG net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17329&authkey=!AMUuqF2wzQiRgww&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1c0fQpqg)
+    - **Note**: the proposals are in the format of [left, top, right, bottom, confidence]
 
 If the automatic "fetch_data" fails, you may manually download resouces from:
 
