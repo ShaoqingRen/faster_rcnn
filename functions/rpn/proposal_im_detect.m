@@ -34,7 +34,7 @@ function [pred_boxes, scores, box_deltas_, anchors_, scores_] = proposal_im_dete
     pred_boxes = fast_rcnn_bbox_transform_inv(anchors, box_deltas);
       % scale back
     pred_boxes = bsxfun(@times, pred_boxes - 1, ...
-        ([im_size(2), im_size(1), im_size(2), im_size(1)] - 1) / ([scaled_im_size(2), scaled_im_size(1), scaled_im_size(2), scaled_im_size(1)] - 1)) + 1;
+        ([im_size(2), im_size(1), im_size(2), im_size(1)] - 1) ./ ([scaled_im_size(2), scaled_im_size(1), scaled_im_size(2), scaled_im_size(1)] - 1)) + 1;
     pred_boxes = clip_boxes(pred_boxes, size(im, 2), size(im, 1));
     
     assert(conf.test_binary == false);
