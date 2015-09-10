@@ -18,13 +18,12 @@ function roidb = roidb_from_voc(imdb, varargin)
 
 ip = inputParser;
 ip.addRequired('imdb', @isstruct);
-ip.addParamValue('with_hard_samples',       true,   @islogical);
-ip.addParamValue('with_selective_search',   false,  @islogical);
-ip.addParamValue('with_edge_box',           false,  @islogical);
-ip.addParamValue('with_self_proposal',      false,  @islogical);
-ip.addParamValue('rootDir',                 '.',    @ischar);
-ip.addParamValue('extension',               '',     @ischar);
-ip.addParamValue('compatible_with_old',     false,  @islogical);
+ip.addParamValue('exclude_difficult_samples',       true,   @islogical);
+ip.addParamValue('with_selective_search',           false,  @islogical);
+ip.addParamValue('with_edge_box',                   false,  @islogical);
+ip.addParamValue('with_self_proposal',              false,  @islogical);
+ip.addParamValue('rootDir',                         '.',    @ischar);
+ip.addParamValue('extension',                       '',     @ischar);
 ip.parse(imdb, varargin{:});
 opts = ip.Results;
 
@@ -64,7 +63,7 @@ cache_file = fullfile(opts.rootDir, ['/imdb/cache/roidb_' cache_file_ss cache_fi
 if imdb.flip
     cache_file = [cache_file '_flip'];
 end
-if ~opts.with_hard_samples
+if opts.exclude_difficult_samples
     cache_file = [cache_file '_easy'];
 end
 cache_file = [cache_file, '.mat'];
@@ -112,7 +111,7 @@ catch
             [~, image_name2] = fileparts(regions.images{i});
             assert(strcmp(image_name1, image_name2));
         end
-        roidb.rois(i) = attach_proposals(voc_rec, regions.boxes{i}, imdb.class_to_id, opts.with_hard_samples, false);
+        roidb.rois(i) = attach_proposals(voc_rec, regions.boxes{i}, imdb.class_to_id, opts.exclude_difficult_samples, false);
       end
   else
       for i = 1:length(imdb.image_ids)/2
@@ -128,8 +127,8 @@ catch
             assert(strcmp(image_name1, image_name2));
             assert(imdb.flip_from(i*2) == i*2-1);
         end
-        roidb.rois(i*2-1) = attach_proposals(voc_rec, regions.boxes{i}, imdb.class_to_id, opts.with_hard_samples, false);
-        roidb.rois(i*2) = attach_proposals(voc_rec, regions.boxes{i}, imdb.class_to_id, opts.with_hard_samples, true);
+        roidb.rois(i*2-1) = attach_proposals(voc_rec, regions.boxes{i}, imdb.class_to_id, opts.exclude_difficult_samples, false);
+        roidb.rois(i*2) = attach_proposals(voc_rec, regions.boxes{i}, imdb.class_to_id, opts.exclude_difficult_samples, true);
       end
   end
 
@@ -142,7 +141,7 @@ end
 
 
 % ------------------------------------------------------------------------
-function rec = attach_proposals(voc_rec, boxes, class_to_id, with_hard_samples, flip)
+function rec = attach_proposals(voc_rec, boxes, class_to_id, exclude_difficult_samples, flip)
 % ------------------------------------------------------------------------
 
 % change selective search order from [y1 x1 y2 x2] to [x1 y1 x2 y2]
@@ -160,7 +159,7 @@ end
 %         feat: [2108x9216 single]
 %        class: [2108x1 uint8]
 if isfield(voc_rec, 'objects')
-  if with_hard_samples
+  if exclude_difficult_samples
       valid_objects = ~cat(1, voc_rec.objects(:).difficult);
   else
       valid_objects = 1:length(voc_rec.objects(:));
