@@ -65,6 +65,7 @@ end
 
 %% -------------------- TESTING --------------------
 im_names = {'001763.jpg', '004545.jpg', '000542.jpg', '000456.jpg', '001150.jpg'};
+% these images can be downloaded with fetch_faster_rcnn_final_model.m
 
 running_time = [];
 for j = 1:length(im_names)
