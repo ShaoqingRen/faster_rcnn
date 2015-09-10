@@ -123,6 +123,8 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 
 ### Resources
 
+**Note**: This documentation may contain links to third party websites, which are provided for your convenience only. Such third party websites are not under Microsoft’s control. Microsoft does not endorse or make any representation, guarantee or assurance regarding any third party website, content, service or product. Third party websites may be subject to the third party’s terms, conditions, and privacy statements.
+
 0. Experiment logs: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17290&authkey=!AGhH4z667tHYYEw&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1ntJ3dLv)
 0. Regions proposals of our trained RPN:
     - ZF net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17331&authkey=!APJHX5JQCLUGHK0&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1dDFGerf)
