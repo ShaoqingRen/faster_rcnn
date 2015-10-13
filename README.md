@@ -12,6 +12,8 @@ This repo contains a MATLAB re-implementation of Fast R-CNN. Details about Fast 
 
 This code has been tested on Windows 7/8 64-bit, Windows Server 2012 R2, and Linux, and on MATLAB 2014a.
 
+Python version is available at [py-faster-rcnn](https://github.com/rbgirshick/py-faster-rcnn).
+
 ### License
 
 Faster R-CNN is released under the MIT License (refer to the LICENSE file for details).
