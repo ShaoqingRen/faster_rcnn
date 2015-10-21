@@ -31,8 +31,11 @@ if use_gpu
     if ~issorted(s(end:-1:1))
         [~, I] = sort(s, 'descend');
         boxes = boxes(I, :);
+        pick = nms_gpu_mex(single(boxes)', double(overlap));
+        pick = I(pick);
+    else
+        pick = nms_gpu_mex(single(boxes)', double(overlap));
     end
-    pick = nms_gpu_mex(single(boxes)', double(overlap));
     return;
 end
     
