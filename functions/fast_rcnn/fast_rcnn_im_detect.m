@@ -100,7 +100,7 @@ function [feat_rois, levels] = map_im_rois_to_feat_rois(conf, im_rois, scales)
         
         areas = widths .* heights;
         scaled_areas = bsxfun(@times, areas(:), scales(:)'.^2);
-        levels = max(abs(scaled_areas - 224.^2), 2); 
+        [~, levels] = min(abs(scaled_areas - 224.^2), [], 2); 
     else
         levels = ones(size(im_rois, 1), 1);
     end

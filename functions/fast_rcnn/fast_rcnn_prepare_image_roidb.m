@@ -118,7 +118,7 @@ function [bbox_targets, is_valid] = compute_targets(conf, rois, overlap)
         % Get IoU overlap between each ex ROI and gt ROI
         ex_gt_overlaps = boxoverlap(rois(ex_inds, :), rois(gt_inds, :));
 
-        assert(all(abs(max(ex_gt_overlaps, [], 2) - max_overlaps(ex_inds)) < 1^-6));
+        assert(all(abs(max(ex_gt_overlaps, [], 2) - max_overlaps(ex_inds)) < 10^-4));
 
         % Find which gt ROI each ex ROI has max overlap with:
         % this will be the ex ROI's gt target
