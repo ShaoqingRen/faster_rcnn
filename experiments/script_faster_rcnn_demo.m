@@ -111,9 +111,10 @@ for j = 1:length(im_names)
         I = boxes_cell{i}(:, 5) >= thres;
         boxes_cell{i} = boxes_cell{i}(I, :);
     end
-    figure(j);
+    h = figure(j);
     showboxes(im, boxes_cell, classes, 'voc');
-    pause(0.1);
+    print(h, '-djpeg', fullfile(pwd, ['result_', im_names{j}])); 
+    %pause(0.1);
 end
 fprintf('mean time: %.3fs\n', mean(running_time));
 
