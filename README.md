@@ -127,21 +127,21 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 
 **Note**: This documentation may contain links to third party websites, which are provided for your convenience only. Such third party websites are not under Microsoft’s control. Microsoft does not endorse or make any representation, guarantee or assurance regarding any third party website, content, service or product. Third party websites may be subject to the third party’s terms, conditions, and privacy statements.
 
-0. Experiment logs: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17290&authkey=!AGhH4z667tHYYEw&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1ntJ3dLv)
+0. Experiment logs: [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!110&authkey=!ACpgYZR2MmfklwI&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1ntJ3dLv)
 0. Regions proposals of our trained RPN:
-    - ZF net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17331&authkey=!APJHX5JQCLUGHK0&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1dDFGerf)
-    - ZF net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17330&authkey=!AFy6VjnKXzk9aAQ&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1jGAgkZW)
-    - VGG net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17328&authkey=!ANKPe_Rn1h4htNw&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1qWHv4JU)
-    - VGG net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17329&authkey=!AMUuqF2wzQiRgww&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1c0fQpqg)
+    - ZF net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!115&authkey=!AJJMrFJHKLXIg5c&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1dDFGerf)
+    - ZF net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!117&authkey=!AJiy5F6Cum1iosI&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1jGAgkZW)
+    - VGG net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!116&authkey=!AH4Zi_KAaun7MhQ&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1qWHv4JU)
+    - VGG net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!118&authkey=!AB_lKk3dbGyr1-I&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1c0fQpqg)
     - **Note**: the proposals are in the format of [left, top, right, bottom, confidence]
 
 If the automatic "fetch_data" fails, you may manually download resouces from:
 
 0. Pre-complied caffe mex:
-    - Windows-based mex complied with VS2013 and Cuda6.5: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17255&authkey=!AHOIeRzQKCYXD3U&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/m6sg347tiaqpcwy/caffe_mex.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1i3m0i0H)
+    - Windows-based mex complied with VS2013 and Cuda6.5: [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!111&authkey=!AFVWFGTbViiX5tg&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/m6sg347tiaqpcwy/caffe_mex.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1i3m0i0H)
 0. ImageNet-pretrained networks:
-    - Zeiler & Fergus (ZF) net [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17256&authkey=!AF7wGc1kbUTfI7o&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/sw58b2froihzwyf/model_ZF.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1o6zipPS)
-    - VGG-16 net [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17319&authkey=!APSc546R6TbCCl4&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/z5rrji25uskha73/model_VGG16.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1mgzSnI4)
+    - Zeiler & Fergus (ZF) net [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!113&authkey=!AIzdm0sD_SmhUQ4&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/sw58b2froihzwyf/model_ZF.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1o6zipPS)
+    - VGG-16 net [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!114&authkey=!AE8uV9B07dREbhM&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/z5rrji25uskha73/model_VGG16.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1mgzSnI4)
 0. Final RPN+FastRCNN models: [OneDrive](https://onedrive.live.com/download?resid=4006CBB8476FF777!17323&authkey=!AJOz-vdYtdPwuKo&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/jswrnkaln47clg2/faster_rcnn_final_model.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1dDCsSm9)
 
 

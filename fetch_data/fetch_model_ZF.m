@@ -4,7 +4,7 @@ cd(fileparts(mfilename('fullpath')));
 
 try
     fprintf('Downloading model_ZF...\n');
-    urlwrite('https://onedrive.live.com/download?resid=4006CBB8476FF777!17256&authkey=!AF7wGc1kbUTfI7o&ithint=file%2czip', ...
+    urlwrite('https://onedrive.live.com/download?resid=36FEC490FBC32F1A!113&authkey=!AIzdm0sD_SmhUQ4&ithint=file%2czip', ...
         'model_ZF.zip');
 
     fprintf('Unzipping...\n');
