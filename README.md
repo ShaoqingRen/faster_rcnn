@@ -65,7 +65,7 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 0. Region Proposal Network (RPN)
     - 2GB GPU memory for ZF net
     - 5GB GPU memory for VGG-16 net
-0. Ojbect Detection Network (Fast R-CNN)
+0. Object Detection Network (Fast R-CNN)
     - 3GB GPU memory for ZF net
     - 8GB GPU memory for VGG-16 net
 
