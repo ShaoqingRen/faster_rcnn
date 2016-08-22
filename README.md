@@ -129,7 +129,7 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 
 0. Experiment logs: [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!110&authkey=!ACpgYZR2MmfklwI&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/wu841r7zmebjp6r/faster_rcnn_logs.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1ntJ3dLv)
 0. Regions proposals of our trained RPN:
-    - ZF net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!115&authkey=!AJJMrFJHKLXIg5c&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1dDFGerf)
+    - ZF net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!115&authkey=!AJJMrFJHKLXIg5c&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1pKGBDyz)
     - ZF net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!117&authkey=!AJiy5F6Cum1iosI&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1jGAgkZW)
     - VGG net trained on VOC 07 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!116&authkey=!AH4Zi_KAaun7MhQ&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1qWHv4JU)
     - VGG net trained on VOC 07/12 trainval [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!118&authkey=!AB_lKk3dbGyr1-I&ithint=file%2czip), [BaiduYun](http://pan.baidu.com/s/1c0fQpqg)
@@ -142,6 +142,6 @@ If the automatic "fetch_data" fails, you may manually download resouces from:
 0. ImageNet-pretrained networks:
     - Zeiler & Fergus (ZF) net [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!113&authkey=!AIzdm0sD_SmhUQ4&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/sw58b2froihzwyf/model_ZF.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1o6zipPS)
     - VGG-16 net [OneDrive](https://onedrive.live.com/download?resid=36FEC490FBC32F1A!114&authkey=!AE8uV9B07dREbhM&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/z5rrji25uskha73/model_VGG16.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1mgzSnI4)
-0. Final RPN+FastRCNN models: [OneDrive](https://onedrive.live.com/download?resid=D7AF52BADBA8A4BC!114&authkey=!AERHoxZ-iAx_j34&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/jswrnkaln47clg2/faster_rcnn_final_model.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1dDCsSm9)
+0. Final RPN+FastRCNN models: [OneDrive](https://onedrive.live.com/download?resid=D7AF52BADBA8A4BC!114&authkey=!AERHoxZ-iAx_j34&ithint=file%2czip), [DropBox](https://www.dropbox.com/s/jswrnkaln47clg2/faster_rcnn_final_model.zip?dl=0), [BaiduYun](http://pan.baidu.com/s/1hsFKmeK)
 
 
