@@ -13,7 +13,9 @@ function startup()
     addpath(genpath(fullfile(curdir, 'experiments')));
     addpath(genpath(fullfile(curdir, 'imdb')));
 
+
     mkdir_if_missing(fullfile(curdir, 'datasets'));
+    addpath(genpath(fullfile(curdir, 'datasets')));
 
     mkdir_if_missing(fullfile(curdir, 'external'));
 
