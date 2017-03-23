@@ -30,12 +30,12 @@ If you find Faster R-CNN useful in your research, please consider citing:
     }
 
 ### Main Results
-                          | training data                          | test data            | mAP   | time/img
-------------------------- |:--------------------------------------:|:--------------------:|:-----:|:-----:
-Faster RCNN, VGG-16       | VOC 2007 trainval                      | VOC 2007 test        | 69.9% | 198ms
-Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval      | VOC 2007 test        | 73.2% | 198ms
-Faster RCNN, VGG-16       | VOC 2012 trainval                      | VOC 2012 test        | 67.0% | 198ms
-Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval | VOC 2012 test        | 70.4% | 198ms
+|                           | training data                          | test data            | mAP   | time/img |
+| ------------------------- |:--------------------------------------:|:--------------------:|:-----:|:-----: |
+| Faster RCNN, VGG-16       | VOC 2007 trainval                      | VOC 2007 test        | 69.9% | 198ms |
+| Faster RCNN, VGG-16       | VOC 2007 trainval + 2012 trainval      | VOC 2007 test        | 73.2% | 198ms |
+| Faster RCNN, VGG-16       | VOC 2012 trainval                      | VOC 2012 test        | 67.0% | 198ms |
+| Faster RCNN, VGG-16       | VOC 2007 trainval&test + 2012 trainval | VOC 2012 test        | 70.4% | 198ms |
 
 **Note**: The mAP results are subject to random variations. We have run 5 times independently for ZF net, and the mAPs are 59.9 (as in the paper), 60.4, 59.5, 60.1, and 59.5, with a mean of 59.88 and std 0.39.
 
@@ -99,12 +99,12 @@ GPU: Titan, Titan Black, Titan X, K20, K40, K80.
 	```
     - The visual results might be different from those in the paper due to numerical variations.	
     - Running time on other GPUs
-    
-           GPU / mean time        |        VGG-16        |        ZF          
-	:------------------------:|:--------------------:|:--------------------:
-		  K40             |        198ms         |       59ms       
-	     Titan Black          |        174ms         |       56ms       
-		Titan X           |        151ms         |       59ms
+
+    |       GPU / mean time        |        VGG-16        |        ZF     |     
+    | :--------------------------: |:--------------------:|:------------: |
+    |  K40                         |        198ms         |       59ms    |
+    |  Titan Black                 |        174ms         |       56ms    |
+    | Titan X                      |        151ms         |       59ms    |
 
 ### Preparation for Training:
 0.	Run `fetch_data/fetch_model_ZF.m` to download an ImageNet-pre-trained ZF net.
