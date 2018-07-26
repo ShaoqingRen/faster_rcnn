@@ -1,3 +1,5 @@
+## This repo has been deprecated. Please see [Detectron](https://github.com/facebookresearch/Detectron), which includes an implementation of [Mask R-CNN](https://arxiv.org/abs/1703.06870).
+
 # *Faster* R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
 
 By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun at Microsoft Research
